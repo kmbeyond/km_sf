@@ -3,7 +3,7 @@
 //USE DATABASE xx;
 //USE SCHEMA xx;
 
-create or replace procedure km_test_sp1(ARG1 VARCHAR, ARG2 VARCHAR )
+create or replace procedure km_sp1(ARG1 VARCHAR, ARG2 VARCHAR )
     RETURNS STRING
     LANGUAGE JAVASCRIPT
     COMMENT = "KM Test Stored Proc"
@@ -20,7 +20,7 @@ $$
 
 
 //------
-DESC procedure km_test_sp1(VARCHAR, VARCHAR );
+DESC procedure km_sp1(VARCHAR, VARCHAR );
 
-call km_test_sp1('k1', 'k2');
-=> KM_TEST_SP1{ARG1:k1,ARG2:k2}
+call km_sp1('k1', 'k2');
+=> KM_SP1{ARG1:k1,ARG2:k2}
