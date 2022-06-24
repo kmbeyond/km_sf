@@ -24,7 +24,7 @@ $$
     return [year, month, day].join('-');
  }
 
- let date_next =  new Date(STR_DATE+"T12:00:00Z");
+ let date_next = new Date(STR_DATE+"T12:00:00Z");
  date_next.setDate(date_next.getDate() + 1);
  return formatDate(date_next);
 $$
@@ -36,3 +36,6 @@ $$
 
 //call km_sp_next_date('2022-01-31');
 //=> 2022-02-01
+
+//call km_sp_next_date('2022-12-31');
+//-> 2023-01-01
