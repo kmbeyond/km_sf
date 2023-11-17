@@ -23,6 +23,18 @@ SELECT concat(to_char(TO_TIMESTAMP(substring(file_name,0,8), 'YYYYMMDD'), 'YYYY-
 --> 2023-10-25 10:49:14
 
 
+
+-----FILTERs
+--on datetime column
+--CAUTION with queries on datetime/timestamp columns: TIMESTAMP_NTZ
+AND record_create_time between concat(current_date()-1, ' 00:00:00') AND concat(current_date()-1, ' 23:59:59.999') --
+AND record_create_time BETWEEN concat(current_date()-1, ' 00:00:00') AND current_date()
+
+--AND to_char(record_create_time, '%Y-%m-%d')=current_date()-1  --'2023-11-15'  --EXPENSIVE
+--AND substr(record_create_time,0,10)=current_date()-1 --'2023-11-15'    --EXPENSIVE
+
+
+
 -----append random number to a string to make it unique
 concat(TRANSACTION_ID, uniform(0, 1000, random())) as TRANSACTION_ID,
 
