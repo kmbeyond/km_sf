@@ -1,5 +1,21 @@
 
 
+-------------dynamic LIKE (without using OR)
+SELECT * FROM tbl WHERE col1 LIKE 'aaa%' OR col1 LIKE 'bbb%';
+
+--with data from a table
+WITH like_values AS (SELECT 'aaa' as col1 UNION SELECT 'bbb' as col1)
+,sample_data AS (SELECT 'aaaxxx' as col1)
+select * FROM sample_data a
+ JOIN like_values b ON a.col1 LIKE concat(b.col1,'%')
+;
+
+--build list of strings appended with .*
+WITH sample_data AS (SELECT 'aaaxxx' as col1)
+select * FROM sample_data WHERE REGEXP_LIKE(col1, 'aaa.*|bbb.*|ccc.*');
+ LIMIT 10;
+
+
 
 current_date() as record_create_date,
 to_varchar(CURRENT_DATE(), 'yyyy-mm-dd') as TRANSACTION_DT
